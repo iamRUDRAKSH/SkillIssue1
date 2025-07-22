@@ -1,0 +1,28 @@
+# FastAPI & ASGI server
+fastapi
+uvicorn[standard]
+
+# Firebase Admin SDK
+firebase-admin
+
+# Qdrant client
+qdrant-client
+
+# Pydantic model support
+pydantic
+
+# For CORS middleware
+python-multipart
+aiofiles
+
+# Local embedding model (optional)
+sentence-transformers
+torch
+
+# Environment variables
+python-dotenv
+
+# Optional: OpenAI fallback (LangChain agent)
+openai
+langchain
+
