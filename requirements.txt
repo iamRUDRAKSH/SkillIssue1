@@ -20,4 +20,5 @@ python-dotenv
 starlette
 typing
 firestore
+itsdangerous
 
