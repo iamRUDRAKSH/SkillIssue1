@@ -15,15 +15,9 @@ pydantic
 python-multipart
 aiofiles
 
-# Local embedding model (optional)
-sentence-transformers
-torch
-
 # Environment variables
 python-dotenv
-
-# Optional: OpenAI fallback (LangChain agent)
-# openai
-# langchain
 starlette
+typing
+firestore
 

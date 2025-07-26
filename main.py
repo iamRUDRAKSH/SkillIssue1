@@ -25,4 +25,4 @@ app.include_router(onboard.router, prefix="/onboard", tags=["onboard"])
 
 @app.get("/")
 def home():
-    return {"message": "I hope this works "}
+    return {"message": "I hope this works."}

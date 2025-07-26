@@ -1,29 +1,33 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
-from pathlib import Path
-import os
-import json
 from fastapi import HTTPException
+import os
+from pathlib import Path
 
+# Path to your service‑account JSON file (mounted or env‑configured)
+FIREBASE_CRED_PATH = os.getenv(
+    "FIREBASE_CREDENTIALS_PATH",
+    "/etc/secrets/skillissue-ea816-firebase-adminsdk-fbsvc-8cc10a29d9.json"
+)
 
-firebase_creds = "/etc/secrets/skillissue-ea816-firebase-adminsdk-fbsvc-8cc10a29d9.json"
-if firebase_creds:
-    cred_dict = json.loads(firebase_creds)
-    cred = credentials.Certificate(cred_dict)
+# Initialize Firebase Admin
+if Path(FIREBASE_CRED_PATH).is_file():
+    # Directly pass the path to credentials.Certificate
+    cred = credentials.Certificate(FIREBASE_CRED_PATH)
     firebase_admin.initialize_app(cred)
 else:
+    # Fallback to default application credentials
     firebase_admin.initialize_app()
 
 db = firestore.client()
 
 def verify_token(id_token: str):
     try:
-        decoded_token = auth.verify_id_token(id_token)
-        return decoded_token
+        return auth.verify_id_token(id_token)
     except Exception as e:
-        print("Token verification failed:", str(e))
+        # log if needed
         return None
-    
+
 def get_user_details(user_uid: str):
     try:
         user = auth.get_user(user_uid)
@@ -33,6 +37,6 @@ def get_user_details(user_uid: str):
             "photo_url": user.photo_url
         }
     except auth.UserNotFoundError:
-        raise HTTPException(status_code=404, detail="Pardon, that user doesnt exist")
+        raise HTTPException(status_code=404, detail="User not found")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Idk what went wrong but {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error fetching user: {e}")

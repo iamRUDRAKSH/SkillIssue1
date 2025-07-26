@@ -16,7 +16,6 @@ def verify_user(data: TokenRequest, request: Request):
             raise HTTPException(status_code=403, detail="Invalid or expired token")
         
         uid = decoded_token["uid"]
-        email = decoded_token.get("email")
 
         # Set session
         request.session["user_uid"] = uid
