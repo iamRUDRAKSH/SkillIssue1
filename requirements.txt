@@ -25,5 +25,5 @@ python-dotenv
 # Optional: OpenAI fallback (LangChain agent)
 # openai
 # langchain
-# startlette
+starlette
 
