@@ -14,12 +14,10 @@ SkillIssue1/
 
 
 ## 🚀 Project Description
-
-This repository contains a Python application (under `app/`) and a `main.py` script that drives the program.  
-Environment variables are configured using a `.env` file (see `.env.example`).  
-Dependencies are listed in `requirements.txt` for easy setup.
-
-
+The project aims to provide a peer-peer learning and collaboration platoform for the students.  
+The users have to provide their interests, skills and requirements to us, and we will recommend them like minded and folks with similar interests to collaborate with and to learn from.  
+The UI of this application is interactive and fun to use(Tinder like).  
+The recommendations are provided using vector database(Qdrant) taking the parameters like user's interests, skills, projects and recent searches.  
 
 ## 🛠️ Setup Instructions
 
